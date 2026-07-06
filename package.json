@@ -4,10 +4,13 @@
   "description": "Backend API Service for the Pre-Delinquency Intervention Engine",
   "type": "module",
   "main": "server.js",
+  "workspaces": [
+    "frontend"
+  ],
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "build": "cd frontend && npm install && npm run build"
+    "build": "npm run build --workspace=frontend"
   },
   "dependencies": {
     "@google-cloud/bigquery": "^7.9.0",
