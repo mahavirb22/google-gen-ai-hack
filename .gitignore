@@ -1,0 +1,40 @@
+# Dependency Directories
+node_modules/
+frontend/node_modules/
+
+# Production / Build Artifacts
+frontend/dist/
+frontend/.vite/
+
+# Secret / Configuration Files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+gcp-key.json
+*.pem
+*.key
+
+# Dataset / Data Ingestion Files
+*.csv
+*.log
+
+# Python Caches & Virtual Envs
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+.pytest_cache/
+.tox/
+venv/
+.venv/
+env/
+
+# Editor / System Files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
