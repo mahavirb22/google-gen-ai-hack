@@ -18,7 +18,11 @@ const bigQueryConfig = {
 
 if (process.env.GCP_CREDENTIALS) {
   try {
-    bigQueryConfig.credentials = JSON.parse(process.env.GCP_CREDENTIALS);
+    const creds = JSON.parse(process.env.GCP_CREDENTIALS);
+    if (creds.private_key) {
+      creds.private_key = creds.private_key.replace(/\\n/g, '\n');
+    }
+    bigQueryConfig.credentials = creds;
   } catch (err) {
     console.error('Failed to parse GCP_CREDENTIALS environment variable:', err.message);
   }

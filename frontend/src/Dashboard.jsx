@@ -55,6 +55,8 @@ const MOCK_TRANSACTIONS = {
   ]
 };
 
+const HIGH_RISK_CATEGORIES = new Set(['Gambling', 'Cash Advance', 'Crypto Exchange', 'Payday Lender']);
+
 export default function Dashboard() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
