@@ -11,7 +11,7 @@ import {
   DollarSign
 } from 'lucide-react';
 
-const BACKEND_URL = 'http://localhost:8080';
+const BACKEND_URL = '';
 
 // Mock fallback data to keep the dashboard stunning and testable even without BQ connected
 const MOCK_HIGH_RISK_USERS = [

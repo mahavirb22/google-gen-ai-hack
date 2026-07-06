@@ -6,7 +6,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "build": "cd frontend && npm install && npm run build"
   },
   "dependencies": {
     "@google-cloud/bigquery": "^7.9.0",

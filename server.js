@@ -12,11 +12,19 @@ app.use(cors());
 app.use(express.json());
 
 // Initialize BigQuery Client
-// The client will automatically discover credentials via the GOOGLE_APPLICATION_CREDENTIALS env variable
-// or from GCE/GCF metadata servers when deployed in Google Cloud.
-const bigquery = new BigQuery({
+const bigQueryConfig = {
   projectId: process.env.GCP_PROJECT_ID,
-});
+};
+
+if (process.env.GCP_CREDENTIALS) {
+  try {
+    bigQueryConfig.credentials = JSON.parse(process.env.GCP_CREDENTIALS);
+  } catch (err) {
+    console.error('Failed to parse GCP_CREDENTIALS environment variable:', err.message);
+  }
+}
+
+const bigquery = new BigQuery(bigQueryConfig);
 
 // Initialize Gemini Client
 // The new @google/genai SDK automatically retrieves GEMINI_API_KEY from process.env.GEMINI_API_KEY
@@ -217,9 +225,13 @@ Explainable AI (XAI) Summary:
   }
 });
 
-// Start the Express Service
-app.listen(port, () => {
-  console.log('====================================================');
-  console.log(`Pre-Delinquency API Backend running on port ${port}`);
-  console.log('====================================================');
-});
+// Start the Express Service if not running on Vercel as a Serverless Function
+if (process.env.VERCEL !== '1') {
+  app.listen(port, () => {
+    console.log('====================================================');
+    console.log(`Pre-Delinquency API Backend running on port ${port}`);
+    console.log('====================================================');
+  });
+}
+
+export default app;
